@@ -1,0 +1,37 @@
+{
+  "name": "nodejs-getting-started",
+  "version": "1.0.0",
+  "description": "End to end sample for running Node.js applications on Google Cloud Platform",
+  "repository": "https://github.com/GoogleCloudPlatform/nodejs-getting-started",
+  "private": true,
+  "scripts": {
+    "start": "node http-node.js",
+    "test": "samples test app",
+    "cover": "nyc --cache npm test; nyc report --reporter=html"
+  },
+  "author": "Google Inc.",
+  "contributors": [
+    {
+      "name": "Yuri Grinshteyn",
+      "email": "ymg@google.com"
+    }
+  ],
+  "license": "Apache-2.0",
+  "semistandard": {
+    "globals": [
+      "after",
+      "afterEach",
+      "before",
+      "beforeEach",
+      "describe",
+      "it"
+    ]
+  },
+  "dependencies": {
+    "express": "~4.15.2",
+    "sleep": "1.0.0"
+  },
+  "engines": {
+    "node": ">=4.3.2"
+  }
+}
