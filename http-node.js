@@ -9,8 +9,7 @@ function randomInt (low, high) {
 
 // Configure our HTTP server to respond with Hello World to all requests.
 var server = http.createServer(function (request, response) {
-  //console.log("Random number is " + randomInt(1,5));
-  var sleepInt = randomInt(1,5);
+  var sleepInt = randomInt(1,5); //sleep between 1 and 5 seconds
   console.log("random number is now " + sleepInt);
   sleepVar.sleep(sleepInt);
   response.writeHead(200, {"Content-Type": "text/plain"});
