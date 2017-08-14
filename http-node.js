@@ -11,10 +11,11 @@ function randomInt (low, high) {
 var server = http.createServer(function (request, response) {
   //console.log("Random number is " + randomInt(1,5));
   var sleepInt = randomInt(1,5);
-  console.log("random number is now " + sleepInt);
-  sleepVar.sleep(sleepInt);
+  //console.log("random number is now " + sleepInt);
+  //sleepVar.sleep(sleepInt);
   response.writeHead(200, {"Content-Type": "text/plain"});
-  response.end("I slept for " + sleepInt + " seconds");
+  //response.end("I slept for " + sleepInt + " seconds");
+  response.end("no sleep");
 });
 
 // Listen on port 8000, IP defaults to 127.0.0.1
