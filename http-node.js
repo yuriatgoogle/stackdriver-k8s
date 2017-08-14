@@ -1,6 +1,6 @@
 // Load the http module to create an http server.
 var http = require('http');
-var sleepVar = require ('sleep');
+//var sleepVar = require ('sleep');
 
 //function for randomizing
 function randomInt (low, high) {
@@ -11,10 +11,8 @@ function randomInt (low, high) {
 var server = http.createServer(function (request, response) {
   //console.log("Random number is " + randomInt(1,5));
   var sleepInt = randomInt(1,5);
-  //console.log("random number is now " + sleepInt);
-  //sleepVar.sleep(sleepInt);
- // console.log("random number is now " + sleepInt);
- // sleepVar.sleep(sleepInt);
+  var sleepVar = require ('sleep');
+  sleepVar.sleep(sleepInt);
   response.writeHead(200, {"Content-Type": "text/plain"});
   response.end("I slept for " + sleepInt + " seconds");
   //response.end("no sleep");
