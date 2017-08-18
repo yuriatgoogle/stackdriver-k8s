@@ -12,7 +12,7 @@ var server = http.createServer(function (request, response) {
   //console.log("Random number is " + randomInt(1,5));
   var sleepInt = randomInt(1,5);
   var sleepVar = require ('sleep');
-  sleepVar.sleep(sleepInt);
+  //sleepVar.sleep(sleepInt);
   response.writeHead(200, {"Content-Type": "text/plain"});
   response.end("I slept for " + sleepInt + " seconds");
   //response.end("no sleep");
