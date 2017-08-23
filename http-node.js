@@ -1,3 +1,5 @@
+//Add Google Stackdriver Trace agent
+var agent = require('@google-cloud/trace-agent').start();
 // Load the http module to create an http server.
 var http = require('http');
 //var sleepVar = require ('sleep');

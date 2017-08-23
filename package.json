@@ -5,7 +5,7 @@
   "repository": "https://github.com/GoogleCloudPlatform/nodejs-getting-started",
   "private": true,
   "scripts": {
-    "start": "node http-node.js",
+    "start": "GCLOUD_PROJECT=ymg-k8s node http-node.js",
     "test": "samples test app",
     "cover": "nyc --cache npm test; nyc report --reporter=html"
   },
@@ -28,6 +28,7 @@
     ]
   },
   "dependencies": {
+    "@google-cloud/trace-agent": "^2.1.3",
     "express": "~4.15.2",
     "sleep": "5.0.0"
   },

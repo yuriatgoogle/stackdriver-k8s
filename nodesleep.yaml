@@ -27,4 +27,4 @@ spec:
         # The bookshelf process listens on port 8080 for web traffic by default.
         ports:
         - name: http-server
-          containerPort: 8080
+          containerPort: 80
