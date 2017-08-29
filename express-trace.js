@@ -7,14 +7,23 @@ function randomInt (low, high) {
 
 const express = require('express');
 const app = express();
-
+const got = require('got');
 
 
 // This incoming HTTP request should be captured by Trace
 app.get('/', (req, res) => {
 	var sleepInt = randomInt(1,10);
 	var sleepVar = require ('sleep');
-	sleepVar.sleep(sleepInt);
+    sleepVar.sleep(sleepInt);
+    
+    //TODO add outbound HTTP call
+    got('google.com')
+        .then(response => {
+            console.log(response.url);
+        })
+        .catch(error => {
+            console.log(error.response.body);
+        });
     
     //return response
 	res
