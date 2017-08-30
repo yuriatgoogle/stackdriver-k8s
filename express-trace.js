@@ -5,9 +5,19 @@ function randomInt (low, high) {
     return Math.floor(Math.random() * (high - low) + low);
 }
 
+//for outbound HTTP
+const options = {
+    hostname: 'www.google.com',
+    port: 80,
+    path: '/',
+    method: 'GET'
+  };
+
 const express = require('express');
 const app = express();
 const got = require('got');
+const http = require('http');
+
 
 
 // This incoming HTTP request should be captured by Trace
@@ -16,13 +26,29 @@ app.get('/', (req, res) => {
 	var sleepVar = require ('sleep');
     sleepVar.sleep(sleepInt);
     
-    //TODO add outbound HTTP call
+    //outbound HTTP request should be traced
+    const myReq = http.request(options, (res) => {
+        console.log("http requested" + res.url);
+        console.log("STATUS: " + res.statusCode);
+        });
+
+        res.on('end', () => {
+            console.log('http requested ' + res.url);
+        });
+
+        myReq.on('error', (e) => {
+            console.log(`problem with request: ${e.message}`);
+          });
+
+    myReq.end();
+    
+    //TODO wrap outbound HTTP call
     got('google.com')
         .then(response => {
-            console.log(response.url);
+            console.log("got requested " + response.url);
         })
         .catch(error => {
-            console.log(error.response.body);
+            console.log("got failed with " + error.response.body);
         });
     
     //return response
