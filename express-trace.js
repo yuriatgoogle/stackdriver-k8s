@@ -1,9 +1,9 @@
 require('@google-cloud/trace-agent').start();
 
-//function for randomizing
+/*//function for randomizing
 function randomInt (low, high) {
     return Math.floor(Math.random() * (high - low) + low);
-}
+}*/
 
 //for outbound HTTP
 const options = {
@@ -22,9 +22,10 @@ const http = require('http');
 
 // This incoming HTTP request should be captured by Trace
 app.get('/', (req, res) => {
-	var sleepInt = randomInt(1,10);
+    //not needed for trace demo
+    /*(var sleepInt = randomInt(1,10);
 	var sleepVar = require ('sleep');
-    //sleepVar.sleep(sleepInt);
+    sleepVar.sleep(sleepInt); */
     
     //outbound HTTP request should be traced
     const myReq = http.request(options, (res) => {
@@ -42,20 +43,11 @@ app.get('/', (req, res) => {
 
     myReq.end();
     
-    //TODO wrap outbound HTTP call
-    /*got('google.com')
-        .then(response => {
-            console.log("got requested " + response.url);
-        })
-        .catch(error => {
-            console.log("got failed with " + error.response.body);
-        });
-        */ // removing got, as we're now doing this using http
-    
     //return response
 	res
         .status(200)
-        .send("I slept for " + sleepInt + " seconds before responding")
+        .send("Thank you for using Stackdriver Trace!")
+        //.send("I slept for " + sleepInt + " seconds before responding")
         .end();
     });
 
