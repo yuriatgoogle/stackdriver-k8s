@@ -1,20 +1,16 @@
 apiVersion: extensions/v1beta1
-kind: Deployment
+kind: ReplicationController
 metadata:
   name: express-trace
-  labels:
-    app: express-trace
-# The bookshelf frontend replica set ensures that at least 3
-# instances of the bookshelf app are running on the cluster.
-# For more info about Pods see:
-#   https://cloud.google.com/container-engine/docs/pods/
 spec:
   replicas: 3
+  selector:
+    app: express-trace
   template:
     metadata:
+      name: express-trace
       labels:
         app: express-trace
-        tier: frontend
     spec:
       containers:
       - name: express-trace
