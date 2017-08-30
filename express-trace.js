@@ -24,7 +24,7 @@ const http = require('http');
 app.get('/', (req, res) => {
 	var sleepInt = randomInt(1,10);
 	var sleepVar = require ('sleep');
-    sleepVar.sleep(sleepInt);
+    //sleepVar.sleep(sleepInt);
     
     //outbound HTTP request should be traced
     const myReq = http.request(options, (res) => {
