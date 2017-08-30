@@ -1,2 +1,2 @@
 # nodesleep
-Basic Hello World with random sleep interval
+Basic Hello World with Stackdriver Trace SDK and outbound HTTP call
