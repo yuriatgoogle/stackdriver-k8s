@@ -43,13 +43,14 @@ app.get('/', (req, res) => {
     myReq.end();
     
     //TODO wrap outbound HTTP call
-    got('google.com')
+    /*got('google.com')
         .then(response => {
             console.log("got requested " + response.url);
         })
         .catch(error => {
             console.log("got failed with " + error.response.body);
         });
+        */ // removing got, as we're now doing this using http
     
     //return response
 	res
