@@ -12,14 +12,9 @@
 #    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
-/*
+*/
 
 require('@google-cloud/trace-agent').start();
-
-/*//function for randomizing
-function randomInt (low, high) {
-    return Math.floor(Math.random() * (high - low) + low);
-}*/
 
 //for outbound HTTP
 const options = {
@@ -35,13 +30,9 @@ const got = require('got');
 const http = require('http');
 
 
-
 // This incoming HTTP request should be captured by Trace
 app.get('/', (req, res) => {
-    //not needed for trace demo
-    /*(var sleepInt = randomInt(1,10);
-	var sleepVar = require ('sleep');
-    sleepVar.sleep(sleepInt); */
+
     
     //outbound HTTP request should be traced
     const myReq = http.request(options, (res) => {
