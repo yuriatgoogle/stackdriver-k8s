@@ -40,36 +40,31 @@ const metadata = { resource: { type: 'global' } };
 
 // This incoming HTTP request should be captured by Trace
 app.get('/', (req, res) => {
-
-    
+    console.log('Inbound request received!');
     //outbound HTTP request should be traced
     const myReq = http.request(options, (res) => {
-        
+        console.log('making outbound request to ' + res.url);
         //---------- Stackdriver Logging ----------------
         //send log message to Stackdriver logging
         const entry = log.entry(metadata, "Outbound request to " + res.url);
-
         // Writes the log entry
         log.write(entry)
             .then(() => {
             console.log('This message is generated in context of the trace!');
-        })
+            })
             .catch((err) => {
                 console.error('ERROR:', err);
-        });
+            });
         // ---------- end logging ----------------------
-
-        console.log("http requested" + res.url);
-        console.log("STATUS: " + res.statusCode);
-        });
+    });
 
         res.on('end', () => {
-            console.log('http requested ' + res.url);
+            console.log('response received');
         });
 
         myReq.on('error', (e) => {
             console.log(`problem with request: ${e.message}`);
-          });
+        });
 
     myReq.end();
     
