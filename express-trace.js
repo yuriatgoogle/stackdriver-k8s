@@ -15,6 +15,13 @@
 */
 
 require('@google-cloud/trace-agent').start();
+//Stackdriver Logging setup
+const Logging = require('@google-cloud/logging');
+const PPROJECT_ID='ymg-stackdriver-trace'
+const logging = Logging({
+    projectId: projectId
+  });
+const log = logging.log('trace-log');
 
 //for outbound HTTP
 const options = {
@@ -28,7 +35,7 @@ const express = require('express');
 const app = express();
 const got = require('got');
 const http = require('http');
-
+const metadata = { resource: { type: 'global' } };
 
 // This incoming HTTP request should be captured by Trace
 app.get('/', (req, res) => {
@@ -36,6 +43,21 @@ app.get('/', (req, res) => {
     
     //outbound HTTP request should be traced
     const myReq = http.request(options, (res) => {
+        
+        //---------- Stackdriver Logging ----------------
+        //send log message to Stackdriver logging
+        const entry = log.entry(metadata, "Outbound request to " + res.url);
+
+        // Writes the log entry
+        log.write(entry)
+            .then(() => {
+            console.log(`Logged: ${res.url}`);
+        })
+            .catch((err) => {
+                console.error('ERROR:', err);
+        });
+        // ---------- end logging ----------------------
+
         console.log("http requested" + res.url);
         console.log("STATUS: " + res.statusCode);
         });

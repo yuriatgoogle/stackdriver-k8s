@@ -6,4 +6,4 @@ THIS IS NOT AN OFFICIAL GOOGLE PRODUCT
 
 ## How to use this repository
 
-Follow the instructions in the codelab!
+Follow the instructions in the Qwiklab - Qwiklab link TBD.
