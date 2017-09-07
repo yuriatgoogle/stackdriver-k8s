@@ -14,6 +14,7 @@
 #    limitations under the License.
 */
 
+//Stackdriver Trace Agent
 require('@google-cloud/trace-agent').start();
 //Stackdriver Logging setup
 const Logging = require('@google-cloud/logging');
