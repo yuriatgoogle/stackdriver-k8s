@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
         // Writes the log entry
         log.write(entry)
             .then(() => {
-            console.log(`Logged: ${res.url}`);
+            console.log('This message is generated in context of the trace!');
         })
             .catch((err) => {
                 console.error('ERROR:', err);
