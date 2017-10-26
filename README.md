@@ -6,4 +6,31 @@ THIS IS NOT AN OFFICIAL GOOGLE PRODUCT
 
 ## How to use this repository
 
-Follow the instructions in the Qwiklab - Qwiklab link TBD.
+## Deploy app to Google Container Engine to see Stackdriver Monitoring for GKE
+1. Update express-trace.js with references to your project
+2. Update express-trace.yaml with references to your project
+3. Update gcloud components - "gcloud components update"
+4. Create container cluster - 
+    gcloud container clusters create \
+    gke-cluster --zone=us-west1-a
+5. Get container external IP:
+    gcloud container clusters list
+5. Configure kubectl access to this cluster:
+    a. kubectl config set-cluster gke-cluster --server=http://<ip address>
+    b. gcloud container clusters get-credentials gke-cluser --zone=us-west1-a
+6. Build the image and push it
+    docker build -t gcr.io/[YOUR_PROJECT_ID]/express-trace . 
+    gcloud docker -- push gcr.io/[YOUR_PROJECT_ID]/express-trace
+7. Deploy this app to your cluster
+    kubectl create -f express-trace.yaml
+8. Expose it externally
+    kubectl expose ReplicationController/express-trace --type=LoadBalancer
+9. Get external IP address and validate it:
+    kubectl get services (until EXTERNAL-IP is no longer pending)
+9. Go see the goodness in Stackdriver!
+
+## Deploy app to Kubernetes cluster in Google Compute Engine
+1. Open Cloud Shell in Google Cloud Console
+2. Make sure your project is set
+    gcloud config set project <your project ID>
+3. 
