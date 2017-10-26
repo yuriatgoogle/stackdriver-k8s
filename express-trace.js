@@ -18,7 +18,7 @@
 require('@google-cloud/trace-agent').start();
 //Stackdriver Logging setup
 const Logging = require('@google-cloud/logging');
-const PROJECT_ID='ymg-stackdriver-trace'
+const PROJECT_ID='stackdriver-kubernetes'
 const logging = Logging({
     projectId: PROJECT_ID
   });

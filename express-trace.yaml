@@ -30,7 +30,7 @@ spec:
       containers:
       - name: express-trace
         # Replace ymg-stackdriver-trace with your project ID.
-        image: gcr.io/ymg-stackdriver-trace/express-trace
+        image: gcr.io/stackdriver-kubernetes/express-trace
         # This setting makes nodes pull the docker image every time before
         # starting the pod. This is useful when debugging, but should be turned
         # off in production.
