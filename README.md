@@ -27,10 +27,25 @@ THIS IS NOT AN OFFICIAL GOOGLE PRODUCT
     kubectl expose ReplicationController/express-trace --type=LoadBalancer
 9. Get external IP address and validate it:
     kubectl get services (until EXTERNAL-IP is no longer pending)
+    http://<ip address>:8080
 9. Go see the goodness in Stackdriver!
 
 ## Deploy app to Kubernetes cluster in Google Compute Engine
 1. Open Cloud Shell in Google Cloud Console
 2. Make sure your project is set
     gcloud config set project <your project ID>
-3. 
+3. Clone the repo:
+    git clone https://github.com/yuriatgoogle/stackdriver-k8s.git
+    cd stackdriver-k8s
+4. Download kubernetes:
+    curl -sS https://get.k8s.io | bash
+5. Install kubernetes and stand up cluster:
+    ./kubernetes/cluster/kube-up.sh
+6. Deploy this app to your cluster
+    kubectl create -f express-trace.yaml
+7. Expose it externally
+    kubectl expose ReplicationController/express-trace --type=LoadBalancer
+8. Get external IP address and validate it:
+    kubectl get services (until EXTERNAL-IP is no longer pending)
+    http://<ip address>:8080
+9. 
